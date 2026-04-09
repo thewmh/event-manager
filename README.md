@@ -33,7 +33,7 @@ A WordPress plugin that provides a frontend event submission and management syst
 ## Installation
 
 ### Method 1: WordPress Admin (Recommended for End Users)
-1. Download the latest release zip from [GitHub Releases](https://github.com/thewmh/event-manager/releases)
+1. Download the latest release zip from [GitHub Releases](https://github.com/thewmh/event-submission-layer/releases)
 2. Go to WordPress Admin → **Plugins** → **Add New** → **Upload Plugin**
 3. Choose the downloaded `.zip` file and click **Install Now**
 4. Activate the plugin
@@ -41,7 +41,7 @@ A WordPress plugin that provides a frontend event submission and management syst
 ### Method 2: WP-CLI (For Developers)
 ```bash
 # Install from GitHub release
-wp plugin install https://github.com/thewmh/event-manager/releases/download/v1.0.0/event-submission-layer-v1.0.0.zip --activate
+wp plugin install https://github.com/thewmh/event-submission-layer/releases/download/v1.0.0/event-submission-layer-v1.0.0.zip --activate
 
 # Or install from local build
 wp plugin install /path/to/event-submission-layer-v1.0.0.zip --activate
@@ -56,7 +56,7 @@ wp plugin install /path/to/event-submission-layer-v1.0.0.zip --activate
 ```bash
 # Clone repository
 cd wp-content/plugins/
-git clone https://github.com/thewmh/event-manager.git event-submission-layer
+git clone https://github.com/thewmh/event-submission-layer.git event-submission-layer
 cd event-submission-layer
 
 # Install dependencies and build
@@ -145,8 +145,8 @@ For official WordPress.org distribution:
 ### Setup
 ```bash
 # Clone the repository
-git clone https://github.com/thewmh/event-manager.git event-manager
-cd event-manager
+git clone https://github.com/thewmh/event-submission-layer.git event-submission-layer
+cd event-submission-layer
 
 # Install dependencies
 npm install
@@ -169,14 +169,14 @@ npm run build
 
 ### File Structure
 ```
-event-manager.php/
-├── event-manager.php          # Main plugin file
+event-submission-layer/
+├── event-submission-layer.php          # Main plugin file
 ├── package.json               # NPM configuration and scripts
 ├── README.md                  # Documentation
 ├── .gitignore                 # Git ignore rules
 ├── node_modules/              # NPM dependencies (not committed)
 ├── dist/                      # Built plugin (not committed)
-│   ├── event-manager.php      # Plugin file
+│   ├── event-submission-layer.php      # Plugin file
 │   ├── README.md             # Documentation
 │   └── assets/               # Bundled assets
 │       ├── css/

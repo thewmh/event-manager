@@ -2,7 +2,7 @@
 
 **Release Date:** April 8, 2026  
 **Version:** 1.0.0  
-**Repository:** [thewmh/event-manager](https://github.com/thewmh/event-manager)  
+**Repository:** [thewmh/event-submission-layer](https://github.com/thewmh/event-submission-layer)  
 **License:** GPL-2.0-or-later
 
 ## 🎉 Overview
@@ -32,14 +32,14 @@ The Event Submission Layer is a comprehensive WordPress plugin that provides a f
 ## 📦 Installation
 
 ### Method 1: WordPress Admin (Recommended)
-1. Download the latest release zip from [GitHub Releases](https://github.com/thewmh/event-manager/releases)
+1. Download the latest release zip from [GitHub Releases](https://github.com/thewmh/event-submission-layer/releases)
 2. Go to **WordPress Admin** → **Plugins** → **Add New** → **Upload Plugin**
 3. Choose the downloaded `.zip` file and click **Install Now**
 4. Activate the plugin
 
 ### Method 2: WP-CLI
 ```bash
-wp plugin install https://github.com/thewmh/event-manager/releases/download/v1.0.0/event-submission-layer-v1.0.0.zip --activate
+wp plugin install https://github.com/thewmh/event-submission-layer/releases/download/v1.0.0/event-submission-layer-v1.0.0.zip --activate
 ```
 
 ### Method 3: Manual Installation
@@ -50,7 +50,7 @@ wp plugin install https://github.com/thewmh/event-manager/releases/download/v1.0
 ### Method 4: Development Installation
 ```bash
 cd wp-content/plugins/
-git clone https://github.com/thewmh/event-manager.git event-submission-layer
+git clone https://github.com/thewmh/event-submission-layer.git event-submission-layer
 cd event-submission-layer
 npm install && npm run build
 wp plugin activate event-submission-layer
@@ -128,21 +128,21 @@ wp plugin activate event-submission-layer
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](https://github.com/thewmh/event-manager/blob/master/CONTRIBUTING.md) for details.
+We welcome contributions! Please see our [Contributing Guide](https://github.com/thewmh/event-submission-layer/blob/master/CONTRIBUTING.md) for details.
 
 ### Development Setup
 ```bash
-git clone https://github.com/thewmh/event-manager.git
-cd event-manager
+git clone https://github.com/thewmh/event-submission-layer.git
+cd event-submission-layer
 npm install
 npm run build
 ```
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/thewmh/event-manager/issues)
-- **Documentation**: [README.md](https://github.com/thewmh/event-manager/blob/master/README.md)
-- **Releases**: [GitHub Releases](https://github.com/thewmh/event-manager/releases)
+- **Issues**: [GitHub Issues](https://github.com/thewmh/event-submission-layer/issues)
+- **Documentation**: [README.md](https://github.com/thewmh/event-submission-layer/blob/master/README.md)
+- **Releases**: [GitHub Releases](https://github.com/thewmh/event-submission-layer/releases)
 
 ## 🙏 Acknowledgments
 
