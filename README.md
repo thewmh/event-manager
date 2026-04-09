@@ -94,17 +94,73 @@ A WordPress plugin that provides a frontend event submission and management syst
 
 ## Development
 
+### Prerequisites
+- Node.js 14+
+- npm or yarn
+- WordPress 6.2+
+- PHP 7.4+
+- Sugar Calendar Lite
+
+### Setup
+```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git event-manager
+cd event-manager
+
+# Install dependencies
+npm install
+
+# Build the plugin
+npm run build
+```
+
+### Development Workflow
+```bash
+# Install dependencies and build assets
+npm run install-assets
+
+# Development build
+npm run dev
+
+# Production build
+npm run build
+```
+
 ### File Structure
 ```
 event-manager.php/
 ├── event-manager.php          # Main plugin file
-├── assets/
-│   ├── css/
-│   │   └── flatpickr.min.css  # Date picker styles
-│   └── js/
-│       └── flatpickr.min.js   # Date picker script
-├── README.md                  # This file
-└── [future files]
+├── package.json               # NPM configuration and scripts
+├── README.md                  # Documentation
+├── .gitignore                 # Git ignore rules
+├── node_modules/              # NPM dependencies (not committed)
+├── dist/                      # Built plugin (not committed)
+│   ├── event-manager.php      # Plugin file
+│   ├── README.md             # Documentation
+│   └── assets/               # Bundled assets
+│       ├── css/
+│       │   └── flatpickr.min.css
+│       └── js/
+│           └── flatpickr.min.js
+└── [source files for development]
+```
+
+### Build Process
+The build process creates a clean, distributable plugin in the `dist/` directory:
+
+1. **Clean**: Removes old build artifacts
+2. **Copy Assets**: Copies Flatpickr from `node_modules/` to `dist/assets/`
+3. **Copy Plugin**: Copies core plugin files to `dist/`
+
+The `dist/` folder contains everything needed for installation and can be zipped for distribution.
+
+### Distribution
+```bash
+# Build for distribution
+npm run build
+
+# Create zip file
+cd dist && zip -r ../event-submission-layer-v1.0.0.zip .
 ```
 
 ### Key Functions

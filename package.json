@@ -1,0 +1,40 @@
+{
+  "name": "event-submission-layer",
+  "version": "1.0.0",
+  "description": "Frontend event submission and management for Sugar Calendar Lite",
+  "main": "event-manager.php",
+  "scripts": {
+    "build": "npm run clean && npm run copy-assets && npm run copy-plugin",
+    "clean": "rm -rf dist/",
+    "copy-assets": "mkdir -p dist/assets/css dist/assets/js && cp node_modules/flatpickr/dist/flatpickr.min.css dist/assets/css/ && cp node_modules/flatpickr/dist/flatpickr.min.js dist/assets/js/",
+    "copy-plugin": "cp event-manager.php dist/ && cp README.md dist/",
+    "dev": "npm run build && echo 'Plugin built successfully in dist/'",
+    "watch": "npm run build && echo 'Watching for changes...'",
+    "prepublishOnly": "npm run build",
+    "install-assets": "npm install && npm run copy-assets"
+  },
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "events",
+    "sugar-calendar",
+    "frontend"
+  ],
+  "author": "Your Name",
+  "license": "GPL-2.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_USERNAME/YOUR_REPO.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YOUR_USERNAME/YOUR_REPO/issues"
+  },
+  "homepage": "https://github.com/YOUR_USERNAME/YOUR_REPO#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "flatpickr": "^4.6.13"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
