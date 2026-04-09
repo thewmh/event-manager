@@ -1,0 +1,31 @@
+# WordPress
+wp-config.php
+wp-content/uploads/
+wp-content/plugins/
+wp-content/themes/
+wp-content/debug.log
+
+# Development
+.vscode/
+.idea/
+*.log
+.DS_Store
+Thumbs.db
+
+# Node.js (if you add build tools later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# PHP
+/vendor/
+composer.lock
+
+# Testing
+phpunit.xml
+tests/
+coverage/
+
+# Local development
+local-*.php
