@@ -41,10 +41,10 @@ A WordPress plugin that provides a frontend event submission and management syst
 ### Method 2: WP-CLI (For Developers)
 ```bash
 # Install from GitHub release
-wp plugin install https://github.com/thewmh/event-submission-layer/releases/download/v1.0.0/event-submission-layer-v1.0.0.zip --activate
+wp plugin install https://github.com/thewmh/event-submission-layer/releases/download/v1.0.1/event-submission-layer-v1.0.1.zip --activate
 
 # Or install from local build
-wp plugin install /path/to/event-submission-layer-v1.0.0.zip --activate
+wp plugin install /path/to/event-submission-layer-v1.0.1.zip --activate
 ```
 
 ### Method 3: Manual Installation
@@ -201,7 +201,7 @@ The `dist/` folder contains everything needed for installation and can be zipped
 npm run build
 
 # Create zip file
-cd dist && zip -r ../event-submission-layer-v1.0.0.zip .
+cd dist && zip -r ../event-submission-layer-v1.0.1.zip .
 
 # Or use the GitHub Actions artifact from the Actions tab
 ```

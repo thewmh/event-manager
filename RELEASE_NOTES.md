@@ -1,3 +1,45 @@
+# Event Submission Layer v1.0.1 - Release Notes
+
+**Release Date:** April 8, 2026  
+**Version:** 1.0.1  
+**Repository:** [thewmh/event-submission-layer](https://github.com/thewmh/event-submission-layer)  
+**License:** GPL-2.0-or-later
+
+## 🐛 Bug Fixes
+
+- **File Naming Correction**: Renamed main plugin file from `event-manager.php` to `event-submission-layer.php` to match project naming
+- **Repository URLs**: Updated all GitHub repository references to use correct project name
+- **Documentation**: Corrected file paths and installation commands throughout documentation
+
+## 📦 Installation
+
+### Method 1: WordPress Admin (Recommended)
+1. Download the latest release zip from [GitHub Releases](https://github.com/thewmh/event-submission-layer/releases)
+2. Go to **WordPress Admin** → **Plugins** → **Add New** → **Upload Plugin**
+3. Choose the downloaded `.zip` file and click **Install Now**
+4. Activate the plugin
+
+### Method 2: WP-CLI
+```bash
+wp plugin install https://github.com/thewmh/event-submission-layer/releases/download/v1.0.1/event-submission-layer-v1.0.1.zip --activate
+```
+
+### Method 3: Manual Installation
+1. Download and unzip the release from GitHub
+2. Upload the `event-submission-layer/` folder to `wp-content/plugins/`
+3. Activate through WordPress Admin
+
+### Method 4: Development Installation
+```bash
+cd wp-content/plugins/
+git clone https://github.com/thewmh/event-submission-layer.git event-submission-layer
+cd event-submission-layer
+npm install && npm run build
+wp plugin activate event-submission-layer
+```
+
+---
+
 # Event Submission Layer v1.0.0 - Release Notes
 
 **Release Date:** April 8, 2026  
@@ -153,4 +195,3 @@ npm run build
 ---
 
 **Event Submission Layer v1.0.0** - Bringing professional event management to WordPress frontend. 🎯</content>
-<parameter name="filePath">/Users/wmh/Local Sites/aajci/app/public/wp-content/plugins/event-manager.php_/RELEASE_NOTES.md
