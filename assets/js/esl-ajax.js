@@ -3,7 +3,6 @@ jQuery(document).ready(function($) {
         e.preventDefault();
         var formData = new FormData(this);
         formData.append('action', 'esl_submit_event');
-        formData.append('security', esl_ajax.nonce);
         $.ajax({
             url: esl_ajax.ajax_url,
             type: 'POST',

@@ -231,7 +231,6 @@ add_action('wp_enqueue_scripts', function () {
         wp_enqueue_script('esl-ajax', plugin_dir_url(__FILE__) . 'assets/js/esl-ajax.js', ['jquery'], '1.0.0', true);
         wp_localize_script('esl-ajax', 'esl_ajax', [
             'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('esl_ajax_nonce'),
         ]);
         
         // Add custom script for initialization
