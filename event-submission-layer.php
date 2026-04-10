@@ -36,12 +36,41 @@ if (version_compare(PHP_VERSION, '7.4', '<')) {
     return;
 }
 
-if (!function_exists('sugar_calendar_add_event')) {
-    add_action('admin_notices', function() {
-        echo '<div class="notice notice-error"><p>' . __('Event Submission Layer requires Sugar Calendar plugin to be active.', 'event-submission-layer') . '</p></div>';
-    });
-    return;
-}
+add_action('plugins_loaded', function() {
+    if (!function_exists('sugar_calendar_add_event')) {
+        if (!get_option('esl_sc_notice_dismissed')) {
+            add_action('admin_notices', function() {
+                echo '<div class="notice notice-error is-dismissible esl-sc-notice" style="position:relative;">'
+                    . '<p>' . __('Event Submission Layer requires the Sugar Calendar plugin to be active.', 'event-submission-layer') . '</p>'
+                    . '<button type="button" class="notice-dismiss esl-dismiss-sc-notice" data-nonce="' . wp_create_nonce('esl_dismiss_sc_notice') . '"><span class="screen-reader-text">' . __('Dismiss this notice.', 'event-submission-layer') . '</span></button>'
+                    . '</div>';
+            });
+        }
+
+        add_action('wp_ajax_esl_dismiss_sc_notice', function() {
+            if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'esl_dismiss_sc_notice')) {
+                wp_send_json_error(['message' => 'Invalid nonce.']);
+            }
+            update_option('esl_sc_notice_dismissed', 1);
+            wp_send_json_success();
+        });
+
+        add_action('admin_enqueue_scripts', function() {
+            wp_add_inline_script('jquery', "
+                jQuery(function($) {
+                    $(document).on('click', '.esl-dismiss-sc-notice', function() {
+                        var nonce = $(this).data('nonce');
+                        $.post(ajaxurl, { action: 'esl_dismiss_sc_notice', nonce: nonce }, function() {
+                            $('.esl-sc-notice').fadeOut();
+                        });
+                    });
+                });
+            ");
+        });
+    } else {
+        delete_option('esl_sc_notice_dismissed');
+    }
+});
 
 /**
  * 🔐 ROLE SETUP
@@ -578,6 +607,10 @@ add_shortcode('event_submit_form', function () {
         return __('Frontend submission is disabled.', 'event-submission-layer');
     }
 
+    if (!function_exists('sugar_calendar_add_event')) {
+        return '<p>' . __('Event submission is currently unavailable.', 'event-submission-layer') . '</p>';
+    }
+
     $event_id = isset($_GET['event_id']) ? intval($_GET['event_id']) : 0;
     $event = $event_id ? get_post($event_id) : null;
     $title = '';
@@ -677,6 +710,10 @@ add_shortcode('events_dashboard', function () {
     $options = get_option('esl_options');
     if (empty($options['enable_frontend'])) {
         return __('Frontend submission is disabled.', 'event-submission-layer');
+    }
+
+    if (!function_exists('sugar_calendar_add_event')) {
+        return '<p>' . __('Event management is currently unavailable.', 'event-submission-layer') . '</p>';
     }
 
     $user_id = get_current_user_id();
