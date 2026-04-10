@@ -192,7 +192,13 @@ function esl_ensure_role_caps() {
             $role->add_cap($cap);
         }
     }
+
+    // Remove read_private_pages — access is now handled by esl_allow_private_plugin_pages filter.
+    if ( $role->has_cap( 'read_private_pages' ) ) {
+        $role->remove_cap( 'read_private_pages' );
+    }
 }
+add_action( 'plugins_loaded', 'esl_ensure_role_caps' );
 
 /**
  * Grant private page read access only for plugin-specific pages.
