@@ -727,6 +727,11 @@ add_shortcode('events_dashboard', function () {
     // DELETE
     if (isset($_GET['delete'])) {
         $event_id = intval($_GET['delete']);
+
+        if (!isset($_GET['_wpnonce']) || !wp_verify_nonce($_GET['_wpnonce'], 'esl_delete_event_' . $event_id)) {
+            wp_die(__('Security check failed.', 'event-submission-layer'));
+        }
+
         $post = get_post($event_id);
 
         if ($post && $post->post_author == $user_id) {
@@ -775,7 +780,7 @@ add_shortcode('events_dashboard', function () {
             echo '<strong style="display: block; margin-bottom: 5px;">' . esc_html($event->post_title) . '</strong>';
             echo '<small style="display: block; color: #666; margin-bottom: 8px;">' . esc_html($event->post_content) . '</small>';
             echo '<a href="?edit=' . $event->ID . '" style="margin-right: 10px;">Edit</a>';
-            echo '<a href="?delete=' . $event->ID . '" onclick="return confirm(\'Delete this event?\')">Delete</a>';
+            echo '<a href="' . esc_url( wp_nonce_url( '?delete=' . $event->ID, 'esl_delete_event_' . $event->ID ) ) . '" onclick="return confirm(\'Delete this event?\')">Delete</a>';
             echo '</div>';
         }
     }
