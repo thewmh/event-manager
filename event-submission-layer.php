@@ -822,7 +822,7 @@ add_shortcode('events_dashboard', function () {
             <form method="post" style="max-width: 400px;" id="esl-event-form">
                 <?php wp_nonce_field('esl_submit_event', 'esl_nonce'); ?>
 
-                <input type="hidden" name="event_id" value="<?php echo $event_id; ?>" />
+                <input type="hidden" name="event_id" value="<?php echo esc_attr($event_id); ?>" />
 
                 <div style="margin-bottom: 12px;">
                     <label for="event_title_edit">Event Title</label>
