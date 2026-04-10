@@ -9,27 +9,27 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
     exit;
 }
 
-// Delete options
-delete_option('esl_add_event_page_id');
-delete_option('esl_events_dashboard_page_id');
-delete_option('esl_options');
-
-// Remove the custom role
-remove_role('event_submitter');
-
-// Delete the created pages
+// Read page IDs before deleting options
 $page_ids = [
     get_option('esl_add_event_page_id'),
     get_option('esl_events_dashboard_page_id'),
 ];
 
+// Delete the created pages
 foreach ($page_ids as $page_id) {
     if ($page_id) {
         wp_delete_post($page_id, true);
     }
 }
 
-// Optionally, delete all events created by the plugin, but that might be destructive, so skip.
+// Delete options
+delete_option('esl_add_event_page_id');
+delete_option('esl_events_dashboard_page_id');
+delete_option('esl_options');
+delete_option('esl_sc_notice_dismissed');
+
+// Remove the custom role
+remove_role('event_submitter');
 
 // Clean up transients
 global $wpdb;
