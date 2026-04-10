@@ -139,6 +139,12 @@ function esl_create_plugin_pages() {
 function esl_activate_plugin() {
     esl_add_role();
     esl_create_plugin_pages();
+
+    // Seed default options on first activation so the frontend shortcodes are
+    // not immediately gated by an uninitialised option value.
+    if (get_option('esl_options') === false) {
+        update_option('esl_options', ['enable_frontend' => 1, 'default_status' => 'publish']);
+    }
 }
 
 function esl_get_add_event_page_url() {
@@ -287,9 +293,28 @@ function esl_admin_page() {
     <?php
 }
 
+/**
+ * Sanitize and normalize the esl_options array.
+ *
+ * WordPress does not submit unchecked checkboxes, so without an explicit
+ * sanitize_callback the 'enable_frontend' key will simply be absent from the
+ * saved option when the box is unchecked, making it impossible to persist a
+ * disabled state.
+ */
+function esl_sanitize_options($input) {
+    $sanitized = [];
+    $sanitized['enable_frontend'] = !empty($input['enable_frontend']) ? 1 : 0;
+    $sanitized['default_status']  = in_array($input['default_status'] ?? '', ['publish', 'pending'], true)
+        ? $input['default_status']
+        : 'publish';
+    return $sanitized;
+}
+
 add_action('admin_init', 'esl_register_settings');
 function esl_register_settings() {
-    register_setting('esl_settings_group', 'esl_options');
+    register_setting('esl_settings_group', 'esl_options', [
+        'sanitize_callback' => 'esl_sanitize_options',
+    ]);
     add_settings_section(
         'esl_main_section',
         __('Main Settings', 'event-submission-layer'),
@@ -318,7 +343,7 @@ function esl_section_callback() {
 
 function esl_enable_frontend_callback() {
     $options = get_option('esl_options');
-    $checked = isset($options['enable_frontend']) ? $options['enable_frontend'] : 1;
+    $checked = isset($options['enable_frontend']) ? $options['enable_frontend'] : 0;
     echo '<input type="checkbox" id="esl_enable_frontend" name="esl_options[enable_frontend]" value="1" ' . checked(1, $checked, false) . ' />';
     echo '<label for="esl_enable_frontend">' . __('Allow users to submit events from the frontend.', 'event-submission-layer') . '</label>';
 }
